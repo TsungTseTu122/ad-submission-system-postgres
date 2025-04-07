@@ -15,4 +15,5 @@ Key Improvements:
 
 - Sample data and query operations demonstrating joins, aggregates, updates, and constraint enforcement
 
-This upgraded version is designed for real-world readiness and future integration with web frameworks like Flask or FastAPI.
+This upgraded version is designed for real-world readiness and integration with web framework (Flask).
+> Originally developed as part of a university course, now enhanced for real-world use.
