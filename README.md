@@ -17,3 +17,15 @@ Key Improvements:
 
 This upgraded version is designed for real-world readiness and integration with web framework (Flask).
 > Originally developed as part of a university course, now enhanced for real-world use.
+
+### Sample Data Generation
+
+To avoid manual insertion of values across 11 tables, I generated the `sample_data.sql` using Python. Each `INSERT INTO` statement was automatically constructed to match the relational schema.
+
+Steps taken:
+1. Defined lists of sample records for each table (e.g. staff, client).
+2. Used Python to loop through and construct SQL insert statements.
+3. Ensured foreign key relationships were respected.
+4. Saved the final result into a single SQL script: `sql/sample_data/sample_data.sql`.
+
+This method supports fast reloading, modification, and reproducibility.
