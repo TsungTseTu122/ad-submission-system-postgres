@@ -1,0 +1,38 @@
+services:
+  database: 
+    image: postgres:15
+    container_name: postgres_db
+    environment:	# Set environment variables (init DB)
+      POSTGRES_USER: admin	# username for PostgreSQL
+      POSTGRES_PASSWORD: admin111	# Password for PostgreSQL
+      POSTGRES_DB: ad_platform_db	# name of the database created
+    volumes:	# Mount folders from host to container
+      - ../sql/init:/docker-entrypoint-initdb.d
+      - dbdata:/var/lib/postgresql/data   # Persist the data
+    ports:
+      - "5432:5432" # Host:Container (access on your machine at localhost:5432)
+    networks:
+      - pgnetwork # Connect to shared internal network
+
+
+  pgadmin:	# pgAdmin UI
+    image: dpage/pgadmin4	# Official pgAdmin image
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com # Login email
+      PGADMIN_DEFAULT_PASSWORD: admin111 # Login password
+    ports:
+      - "5050:80"	# Host:Container (access via localhost 5050)
+    depends_on:
+      - database # # Wait for the DB service to start first
+    networks:
+      - pgnetwork
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+networks:
+  pgnetwork:  # Defines a virtual Docker network so containers can contact each other
+
+volumes:
+  dbdata:  # Register a space to store data
+  pgadmin_data:
