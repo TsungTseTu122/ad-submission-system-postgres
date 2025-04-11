@@ -47,7 +47,7 @@ This method supports fast reloading, modification, and reproducibility.
 | Owns | Staff – Credentials | 1 → 1 | Staff (T) – Credentials (T) |
 
 ### Formal Relational Schema
-![alt text](image.jpg)
+![relational schema](./images/relational_schema.png)
 
 ### Functional Dependencies
 
