@@ -38,10 +38,10 @@ This method supports fast reloading, modification, and reproducibility.
 
 | Relationship | Relation Between Entities | Relational Cardinality | Participation Cardinality |
 |---|---|---|---|
-| Has (Weak) | Staff – Payroll Record | 1 → N | Staff (T) – Payroll Record (T) |
+| Has (Weak) | Staff – Payroll Record | 1 → N | Staff (P) – Payroll Record (T) |
 | Work_in | Department – Staff | 1 → N | Department (P) – Staff (T) |
 | Handle | Department – Project | 1 → N | Department (P) – Project (T) |
-| Assign_to | Project – Staff | M → N | Project (T) – Staff (T) |
+| Assign_to | Project – Staff | M → N | Project (T) – Staff (P) |
 | Qualified_as | Request – Project | 1 → 1 | Request (P) – Project (T) |
 | Submit | Client – Request | 1 → N | Client (P) – Request (T) |
 | Owns | Staff – Credentials | 1 → 1 | Staff (T) – Credentials (T) |
