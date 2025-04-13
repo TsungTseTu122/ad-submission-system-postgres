@@ -56,7 +56,7 @@ This method supports fast reloading, modification, and reproducibility.
 
 **Staff**
 
-- SSN → Gender, Account name, Birth date, Address, Phone number, Firstname, Lastname, Dept_no, Start_date
+- SSN → Gender, Birth date, Address, Phone number, Firstname, Lastname, Dept_no, Start_date
 
 **Full time / Part time / Internship**
 
@@ -64,7 +64,7 @@ This method supports fast reloading, modification, and reproducibility.
 
 **Client**
 
-- Client_ID → Firstname, Lastname, Gender, Account name, Phone number, Birth date, Address
+- Client_ID → Firstname, Lastname, Gender, Phone number, Birth date, Address
 
 **Department**
 
@@ -121,7 +121,6 @@ This method supports fast reloading, modification, and reproducibility.
 |  | telephone_number | VARCHAR(20) | Contact number for the department |
 | staff | ssn | CHAR(10) (PK) | Social Security Number (identifier) |
 |  | gender | VARCHAR(20) | Gender identity |
-|  | account_name | VARCHAR(100) | System account name (login) |
 |  | birth_date | DATE | Date of birth |
 |  | address | VARCHAR(200) | Home or mailing address |
 |  | phone_number | VARCHAR(20) | Contact number (unique) |
@@ -139,7 +138,6 @@ This method supports fast reloading, modification, and reproducibility.
 |  | firstname | VARCHAR(50) | First name |
 |  | lastname | VARCHAR(50) | Last name |
 |  | gender | VARCHAR(25) | Gender identity |
-|  | account_name | VARCHAR(100) | Client’s login or platform account |
 |  | phone_number | VARCHAR(20) | Contact number |
 |  | birth_date | DATE | Date of birth |
 |  | address | VARCHAR(200) | Residential address |
