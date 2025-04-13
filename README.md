@@ -33,6 +33,7 @@ This method supports fast reloading, modification, and reproducibility.
 ## Diagram Design
 
 ### Entity-Relationship Diagram (ERD)
+![ERD](./images/ERD.png)
 
 ### ERD to Relational Mapping Table
 
