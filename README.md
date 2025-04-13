@@ -42,7 +42,7 @@ This method supports fast reloading, modification, and reproducibility.
 | Work_in | Department – Staff | 1 → N | Department (P) – Staff (T) |
 | Handle | Department – Project | 1 → N | Department (P) – Project (T) |
 | Assign_to | Project – Staff | M → N | Project (T) – Staff (P) |
-| Qualified_as | Request – Project | 1 → 1 | Request (P) – Project (T) |
+| Qualified_as | Request – Project | 1 → 1 | Request (T) – Project (T) |
 | Submit | Client – Request | 1 → N | Client (P) – Request (T) |
 | Owns | Staff – Credentials | 1 → 1 | Staff (T) – Credentials (T) |
 
