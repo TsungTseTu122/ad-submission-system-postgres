@@ -44,7 +44,10 @@ This method supports fast reloading, modification, and reproducibility.
 | Assign_to | Project – Staff | M → N | Project (T) – Staff (P) |
 | Qualified_as | Request – Project | 1 → 1 | Request (T) – Project (T) |
 | Submit | Client – Request | 1 → N | Client (P) – Request (T) |
-| Owns | Staff – Credentials | 1 → 1 | Staff (T) – Credentials (T) |
+| Owns | Staff – Staff_Credential | 1 → 1 | Staff (T) – Staff_Credential (T) |
+| Owns | Client – Client_Credential | 1 → 1 | Client (T) – Client_Credential (T) |
+
+
 
 ### Formal Relational Schema
 ![relational schema](./images/relational_schema.png)
@@ -83,9 +86,11 @@ This method supports fast reloading, modification, and reproducibility.
 
 - (Project_No, SSN) → Assign_date
 
-**Credentials**
+**Staff_Credential**
+- credential_id → ssn, account_name, password_hash
 
-- Credential_ID → SSN, Account_name, Password_hash
+**Client_Credential**
+- credential_id → client_id, account_name, password_hash
 
 
 ### BCNF Normalization check
@@ -98,11 +103,13 @@ This method supports fast reloading, modification, and reproducibility.
 | project        | project_no                     | Yes             | No attribute is dependent on anything other than the superkey          |
 | request        | request_no                     | Yes             | All non-key attributes directly depend on `request_no`                 |
 | assign_to      | (project_no, ssn)              | Yes             | Composite key; assign_date depends on both keys                        |
+| staff_credential | credential_id               | Yes            | All fields depend directly on PK   |
+| client_credential| credential_id               | Yes            | All fields depend directly on PK   |
 | payroll_record | payroll_no                     | Yes             | All fields depend on `payroll_no`, the primary key                     |
-| credentials    | credential_id                  | Yes             | All attributes depend directly on `credential_id`                      |
 | full_time      | ssn                            | Yes             | Direct 1-to-1 mapping; fully dependent on primary key                  |
 | part_time      | ssn                            | Yes             | Same as full_time                                                      |
-| internship     | ssn                            | Yes             | Same as full_time                                                      |
+| internship     | ssn                            | Yes             | Same as full_time     
+
 
 ### Data Dictionary
 
@@ -156,10 +163,6 @@ This method supports fast reloading, modification, and reproducibility.
 |  | dept_no | INTEGER (FK) | Department handling the project |
 |  | created_at | TIMESTAMP | When the project record was created |
 |  | updated_at | TIMESTAMP | When the project was last updated |
-| credentials | credential_id | SERIAL (PK) | Unique login credential ID |
-|  | ssn | CHAR(10) (FK) | Associated staff SSN |
-|  | account_name | VARCHAR(100) | Staff login name |
-|  | password_hash | TEXT | Secure hashed password |
 | assign_to | project_no | INTEGER (PK/FK) | Assigned project number |
 |  | ssn | CHAR(10) (PK/FK) | Staff SSN assigned to project |
 |  | assign_date | DATE | Date of assignment |
@@ -167,4 +170,12 @@ This method supports fast reloading, modification, and reproducibility.
 |  | ssn | CHAR(10) (FK) | Linked staff SSN |
 |  | date | DATE | Date of payroll record |
 |  | money | INTEGER | Salary amount |
+| staff_credential   | credential_id    | SERIAL (PK)    | Unique login credential ID for staff     |
+|                    | ssn              | CHAR(10) (FK)  | Associated staff SSN                     |
+|                    | account_name     | VARCHAR(100)   | Staff login name                         |
+|                    | password_hash    | TEXT           | Secure hashed password                   |
+| client_credential  | credential_id    | SERIAL (PK)    | Unique login credential ID for client    |
+|                    | client_id        | INTEGER (FK)   | Associated client ID                     |
+|                    | account_name     | VARCHAR(100)   | Client login name                        |
+|                    | password_hash    | TEXT           | Secure hashed password                   |
 
