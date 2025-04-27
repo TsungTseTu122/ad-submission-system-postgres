@@ -1,38 +1,53 @@
 services:
-  database: 
+  database:
     image: postgres:15
     container_name: postgres_db
-    environment:	# Set environment variables (init DB)
-      POSTGRES_USER: admin	# username for PostgreSQL
-      POSTGRES_PASSWORD: admin111	# Password for PostgreSQL
-      POSTGRES_DB: ad_platform_db	# name of the database created
-    volumes:	# Mount folders from host to container
-      - ../sql/init:/docker-entrypoint-initdb.d
-      - dbdata:/var/lib/postgresql/data   # Persist the data
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin111
+      POSTGRES_DB: ad_platform_db
     ports:
-      - "5432:5432" # Host:Container (access on your machine at localhost:5432)
+      - "5432:5432"
+    volumes:
+      - ../init:/docker-entrypoint-initdb.d
+      - dbdata:/var/lib/postgresql/data
     networks:
-      - pgnetwork # Connect to shared internal network
+      - pgnetwork
 
-
-  pgadmin:	# pgAdmin UI
-    image: dpage/pgadmin4	# Official pgAdmin image
+  pgadmin:
+    image: dpage/pgadmin4
     container_name: pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com # Login email
-      PGADMIN_DEFAULT_PASSWORD: admin111 # Login password
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin111
     ports:
-      - "5050:80"	# Host:Container (access via localhost 5050)
+      - "5050:80"
     depends_on:
-      - database # # Wait for the DB service to start first
+      - database
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - pgnetwork
+
+  flask:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: flask_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
     networks:
       - pgnetwork
     volumes:
-      - pgadmin_data:/var/lib/pgadmin
+      - ..:/app
+    environment:
+      - FLASK_ENV=development
 
 networks:
-  pgnetwork:  # Defines a virtual Docker network so containers can contact each other
+  pgnetwork:
 
 volumes:
-  dbdata:  # Register a space to store data
+  dbdata:
   pgadmin_data:
