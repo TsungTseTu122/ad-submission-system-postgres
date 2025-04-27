@@ -57,7 +57,7 @@ This method supports fast reloading, modification, and reproducibility.
 
 **Staff**
 
-- SSN → Gender, Birth date, Address, Phone number, Firstname, Lastname, Dept_no, Start_date
+- SSN → Gender, Birth date, Address, Phone number, Firstname, Lastname, Position, Dept_no, Start_date
 
 **Full time / Part time / Internship**
 
@@ -127,6 +127,7 @@ This method supports fast reloading, modification, and reproducibility.
 |  | phone_number | VARCHAR(20) | Contact number (unique) |
 |  | firstname | VARCHAR(50) | First name of the staff member |
 |  | lastname | VARCHAR(50) | Last name of the staff member |
+|  | position | VARCHAR(100) | the title of the staff member |
 |  | dept_no | INTEGER (FK) | Linked department ID |
 |  | start_date | DATE | Employment start date |
 | full_time | ssn | CHAR(10) (PK/FK) | Reference to full-time staff SSN |
