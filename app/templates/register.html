@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+  <title>Client Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+      background-color: #f8f8f8;
+    }
+    .container {
+      width: 400px;
+      margin: auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="text-align: left; margin-bottom: 10px;">
+      <a href="{{ url_for('main.client_login') }}">← Back</a>
+    </div>
+
+    <h2>Client Registration</h2>
+
+    <!-- Flash message display -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color: red;">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post">
+      <label>First Name:</label>
+      <input type="text" name="firstname" required>
+
+      <label>Last Name:</label>
+      <input type="text" name="lastname" required>
+
+      <label>Phone:</label>
+      <input type="text" name="phone" required pattern="09\d{8}" title="Enter a valid Taiwanese mobile number (e.g., 0912345678)">
+
+      <label>Address:</label>
+      <input type="text" name="address" required>
+
+      <label>Gender:</label>
+      <select name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Birth Date:</label>
+      <input type="date" name="birth_date" required max="{{ max_birthdate }}">
+
+      <label>Account Name:</label>
+      <input type="text" name="account_name" placeholder="Choose a username" required>
+
+      <label>Password:</label>
+      <input type="password" name="password" placeholder="Choose a password" required pattern="^(?=.*[0-9])(?=.*[!@#$%^&*_]).{6,}$" title="Password must be at least 6 characters long and include a number and a symbol" required>
+
+      <input type="submit" value="Register">
+    </form>
+  </div>
+</body>
+</html>

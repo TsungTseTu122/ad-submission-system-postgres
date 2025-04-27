@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+  <title>Submit New Ad Request</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin-top: 50px;
+    }
+
+    .container {
+      width: 500px;
+      margin: auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .char-counter {
+      text-align: right;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+<div style="text-align: left; padding: 10px;">
+</div>
+
+<div class="container">
+  <h2>Submit New Ad Request</h2>
+
+  <form method="POST">
+    <label for="budget">Budget:</label>
+    <input type="number" name="budget" id="budget" min="100" step="100" value="100" required>
+    <div class="hint">Please enter a budget (minimum 100, step by 100)</div>
+
+    <label for="description">Description:</label>
+    <textarea name="description" id="description" rows="4" required oninput="updateCharCount(this)"></textarea>
+    <div class="char-counter"><span id="charCount">0</span> characters</div>
+
+    <button type="submit">Submit Request</button>
+  </form>
+</div>
+
+<script>
+  function updateCharCount(el) {
+    document.getElementById('charCount').innerText = el.value.length;
+  }
+</script>
+
+</body>
+</html>

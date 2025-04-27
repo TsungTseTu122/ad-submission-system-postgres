@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <title>Client Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 50px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    .request {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    .submit-btn {
+      display: inline-block;
+      margin: 10px 0;
+      background: #28a745;
+      color: white;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+<div style="text-align: right;">
+  <a href="{{ url_for('main.logout') }}">Logout</a>
+</div>
+    <h2>Welcome, {{ username }}!</h2>
+    <a class="submit-btn" href="{{ url_for('main.submit_request') }}">Submit a New Request</a>
+
+    {% if requests %}
+      <h3>Your Submitted Requests:</h3>
+      {% for r in requests %}
+        <div class="request">
+          <strong>ID:</strong> {{ r[0] }}<br>
+          <strong>Date:</strong> {{ r[1] }}<br>
+          <strong>Budget:</strong> ${{ r[2] }}<br>
+          <strong>Status:</strong> {{ r[3] }}<br>
+          <strong>Description:</strong> {{ r[4] }}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>You haven't submitted any requests yet.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

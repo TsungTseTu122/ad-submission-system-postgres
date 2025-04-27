@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <title>Client Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin-top: 50px;
+    }
+    .container {
+      width: 400px;
+      margin: auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    input[type="submit"] {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .link {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .link a {
+      text-decoration: none;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Client Login</h2>
+
+    <!-- Flash message display -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color: red;">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <label>Account Name</label>
+      <input type="text" name="username" required>
+
+      <label>Password</label>
+      <input type="password" name="password" required>
+
+      <input type="submit" value="Login">
+    </form>
+
+    <div class="link">
+      Don't have an account? <a href="{{ url_for('main.register') }}">Register here</a>
+    </div>
+    <div class="link">
+      Are you staff? <a href="{{ url_for('main.staff_login') }}">Login here</a>
+    </div>
+  </div>
+</body>
+</html>

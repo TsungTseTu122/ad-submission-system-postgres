@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+  <title>Staff Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin-top: 30px;
+    }
+    .container {
+      width: 900px;
+      margin: auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .request {
+      border-bottom: 1px solid #ccc;
+      padding: 15px 0;
+    }
+    .request:last-child {
+      border-bottom: none;
+    }
+    form {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    select, input[type="submit"] {
+      padding: 6px;
+      font-size: 14px;
+    }
+    .label {
+      font-weight: bold;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .flash-message {
+      color: green;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="top-bar">
+  <div>
+    <strong>Welcome:</strong> {{ staff_name }}<br>
+    <small>Position: {{ staff_position }}</small>
+  </div>
+  <div>
+    <a href="{{ url_for('main.my_projects') }}">My Projects</a> |
+    <a href="{{ url_for('main.logout') }}">Logout</a>
+  </div>
+</div>
+
+    {# Flash message block #}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h2>Staff Request Management</h2>
+
+    {% for request_no, submission_date, budget, status, description, account_name in requests %}
+      <div class="request">
+        <p><span class="label">Request ID:</span> {{ request_no }}</p>
+        <p><span class="label">Client:</span> {{ account_name }}</p>
+        <p><span class="label">Date:</span> {{ submission_date }}</p>
+        <p><span class="label">Budget:</span> ${{ budget }}</p>
+        <p><span class="label">Description:</span> {{ description }}</p>
+        <form method="POST" action="{{ url_for('main.update_status') }}">
+          <input type="hidden" name="request_no" value="{{ request_no }}">
+          <label for="status">Status:</label>
+          <select name="status">
+            <option value="Pending" {% if status == 'Pending' %}selected{% endif %}>Pending</option>
+            <option value="Approved" {% if status == 'Approved' %}selected{% endif %}>Approved</option>
+            <option value="Rejected" {% if status == 'Rejected' %}selected{% endif %}>Rejected</option>
+          </select>
+          <input type="submit" value="Update">
+        </form>
+      </div>
+    {% endfor %}
+
+  </div>
+</body>
+</html>
