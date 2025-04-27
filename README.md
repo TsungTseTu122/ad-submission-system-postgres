@@ -1,22 +1,22 @@
-# ad-submission-system-postgres
-This project is a modern rebuild of my original academic database system for managing advertising submissions. While the original schema was already normalized up to BCNF, this new version introduces several real-world enhancements to improve data integrity, flexibility, and security.
+# Ad Submission System
 
-Key Improvements:
+## Project Overview
+Ad Submission System is a web-based marketing platform for managing advertisement submissions. It allows clients to submit new advertising project requests and enables staff to review, manage, and approve those requests. The goal is to streamline the ad submission process from the client proposal stage to project assignment and completion. This platform is built with Flask (a Python web framework) for the web application, PostgreSQL for the relational database, and Docker (via Docker Compose) for containerized deployment. With this stack, the application offers a robust backend with a user-friendly front-end interface, all easily deployable in any environment.
 
-- Rebuilt using PostgreSQL for improved reliability and standards compliance
+## Features
 
-- Dockerized setup for easy local deployment and reproducibility
+- **Client Registration & Login**: Clients can create an account and log in to their dashboard. Upon registration, client details are stored securely (with plans for password hashing for security).
+  
+- **Ad Request Submission**: Logged-in clients can submit a new ad request by providing details like budget and a description of the advertisement project. Each request is saved with a status (e.g., Pending, Approved, Rejected) and timestamp.
+  
+- **Staff Login & Dashboard**: Staff members have a separate login and dashboard. On the staff dashboard, they can view all client requests along with details (submission date, budget, description, status) and update the status of each request. This allows the marketing team to approve or reject pending requests.
+  
+- **Project Assignments**: Once a request is approved by staff, it becomes an active project. Staff can see the projects assigned to them (filtered by their user account), so each staff member knows which advertising projects they are responsible for. This feature ensures that staff only see and manage their own assignments.
+  
+- **SQL Queries**: The system’s database is designed not only for transaction processing but also for analysis. A set of SQL queries is included to demonstrate analytical capabilities on the data – for example, calculating average budgets, grouping clients by age, ranking staff by project count, etc. (See the SQL Analysis Showcase below for examples and screenshots of these queries in action.)
 
-- Additional data validation constraints, e.g., age > 0, budget > 0
-
-- Inclusive and flexible data types, such as supporting "Non-binary" and "Prefer not to say" in the gender field
-
-- Separation of user credentials into a dedicated table, with plans for password hashing
-
-- Sample data and query operations demonstrating joins, aggregates, updates, and constraint enforcement
-
-This upgraded version is designed for real-world readiness and integration with web framework (Flask).
-> Originally developed as part of a university course, now enhanced for real-world use.
+## Project Demo
+Below are screenshots demonstrating key parts of the system’s user interface. These screenshots illustrate how clients and staff interact with the platform:
 
 ### Sample Data Generation
 
