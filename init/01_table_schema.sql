@@ -12,6 +12,7 @@ CREATE TABLE staff (
     gender VARCHAR(20),
     birth_date DATE,
     address VARCHAR(200),
+    position VARCHAR(50),
     phone_number VARCHAR(20),
     firstname VARCHAR(50),
     lastname VARCHAR(50),
@@ -33,7 +34,7 @@ CREATE TABLE client (
     firstname VARCHAR(50),
     lastname VARCHAR(50),
     gender VARCHAR(25),
-        phone_number VARCHAR(20),
+    phone_number VARCHAR(20),
     birth_date DATE,
     address VARCHAR(200),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -84,12 +85,13 @@ CREATE TABLE assign_to (
     FOREIGN KEY (ssn) REFERENCES staff(ssn)
 );
 
--- Payroll Record (Weak Entity)
+-- Payroll Record (Weak entity)
 CREATE TABLE payroll_record (
     payroll_no SERIAL PRIMARY KEY,
-    ssn CHAR(10) REFERENCES staff(ssn),
-    date DATE,
-    money INTEGER CHECK (money > 0)
+    ssn CHAR(9) REFERENCES staff(ssn),  
+    salary INTEGER CHECK (salary > 0),
+    bonus INTEGER DEFAULT 0 CHECK (bonus >= 0),
+    pay_date DATE NOT NULL
 );
 
 -- Full-time Staff Specialization
