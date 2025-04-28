@@ -1,5 +1,5 @@
 # Ad Submission System
-[Click here to watch the demo video]([https://youtu.be/VIDEO_ID](https://www.youtube.com/watch?v=pxqvK_MeWVA))
+[![Watch the video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)]([https://youtu.be/VIDEO_ID](https://www.youtube.com/watch?v=pxqvK_MeWVA))
 
 ## Project Overview
 Ad Submission System is a web-based marketing platform for managing advertisement submissions. It allows clients to submit new advertising project requests and enables staff to review, manage, and approve those requests. The goal is to streamline the ad submission process from the client proposal stage to project assignment and completion. This platform is built with Flask (a Python web framework) for the web application, PostgreSQL for the relational database, and Docker (via Docker Compose) for containerized deployment. With this stack, the application offers a robust backend with a user-friendly front-end interface, all easily deployable in any environment.
