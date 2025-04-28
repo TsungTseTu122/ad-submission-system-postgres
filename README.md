@@ -237,7 +237,7 @@ In addition to the web application features, the project includes a series of SQ
 
 - **Client Age Group Categorization**:
 The query calculates each client’s age (based on birth date) and then categorizes them into groups (Under 20, 20s, 30s, 40s, 50+). This demonstrates how to perform data transformation in SQL using CASE expressions.
-![group_client_age](sql/group_clients_into_age_groups.png)
+![group_client_age](sql/group_client_age.png)
 
 - **Overall Staff Project Ranking**:
 Determines the ranking of staff by total number of projects across the entire organization. Unlike the department-specific ranking, this query ranks all staff globally by project count to find who has worked on the most projects overall.
