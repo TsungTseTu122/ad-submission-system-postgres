@@ -284,6 +284,12 @@ An example of a multi-table join that lists all project assignments. It combines
 ![project_assignment_list](sql/project_assignment_list.png)
 
 ## Future improvement
-1. permission
-2. project assign method
+1. permission control
+
+Currently, all staff accounts can manage all requests. In future versions, we could implement role-based access control (RBAC) so different staff have different levels of permission (e.g., Manager can approve, Intern can only view).
+
+2. Advanced Project Assignment Method
+
+Right now for this system there is no actual assigning mechanism for approved projects. In the future, I will design a smart assignment method that assigns projects based on staff workload, specialization, or department automatically.
 3. more functions
+Some additional features could be added like notification systems, request history logs, client request editing, staff performance dashboards, or analytics dashboards.
