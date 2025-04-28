@@ -15,12 +15,23 @@ Ad Submission System is a web-based marketing platform for managing advertisemen
   
 - **SQL Queries**: The system’s database is designed not only for transaction processing but also for analysis. A set of SQL queries is included to demonstrate analytical capabilities on the data – for example, calculating average budgets, grouping clients by age, ranking staff by project count, etc. (See the SQL Analysis Showcase below for examples and screenshots of these queries in action.)
 
-## Project Demo
-Below are screenshots demonstrating key parts of the system’s user interface. These screenshots illustrate how clients and staff interact with the platform:
+## Folder Structure Overview
+The repository is organized into folders and files to separate concerns and make it easy to navigate:
+
+- **Application Code & Modules**: All Flask application code (routes, models, etc.) is organized in a module (for example, in an ```app/``` directory or similar structure). This includes the main application factory or initialization code.
+  
+- **Templates** (```/templates/```): Contains the HTML template files for the web interface. For instance, ```client_dashboard.html```, ```staff_dashboard.html```, ```client_login.html```, ```staff_login.html```, ```register.html```, ```submit_request.html```, etc., are all stored here. These templates are rendered by Flask to generate the pages that clients and staff see.
+
+- **Data Generator** (```/generator/```): Includes scripts for generating sample data. The ```generate_sample_data.py``` script stays here, creates SQL insert statements to populate the database with example clients, staff, requests, projects, etc based on our table schema. 
+  
+- **SQL Analysis** (```/sql/```): Contains screenshots of SQL commands and the result used in this README’s SQL Analysis Showcase section.
+  
+- **Docker Configuration**: The root of the project contains the ```docker-compose.yml``` file and a Dockerfile for the Flask app. The Docker Compose file defines how the containers (app, PostgreSQL, pgAdmin) work together, including port mappings (5000 for the app, 5432 for Postgres, 5050 for pgAdmin) and volumes (to persist database data or to load the initial SQL scripts into the database container).
+
+- **Miscellaneous**: Standard files like ```requirements.txt``` (listing Python dependencies), and .gitignore are present at the root. The ```requirements.txt``` is used to install the necessary Python packages inside the Docker image (Flask, psycopg2 for PostgreSQL connection, etc.).
 
 ### Sample Data Generation
-
-To avoid manual insertion of values across 11 tables, I generated the `sample_data.sql` using Python. Each `INSERT INTO` statement was automatically constructed to match the relational schema.
+To avoid manual insertion of values across 12 tables, I generated the `sample_data.sql` using `generate_sample_data.py`. It used `faker` library to simulate real data for us to do easy analysis.
 
 Steps taken:
 1. Defined lists of sample records for each table (e.g. staff, client).
@@ -179,3 +190,37 @@ This method supports fast reloading, modification, and reproducibility.
 |                    | account_name     | VARCHAR(100)   | Client login name                        |
 |                    | password_hash    | TEXT           | Secure hashed password                   |
 
+## Setup Instruction
+Follow these steps to set up and run the Ad Submission System on your local machine:
+
+1. **Prerequisites**: Make sure you have **Git**, **Docker**, and **Docker Compose** installed on your system.
+  
+2. **Clone the Repository**: Clone this repository to your local machine using Git.
+```
+git clone https://github.com/TsungTseTu122/ad-submission-system-postgres.git
+```
+Then navigate into the project directory:
+```
+cd ad-submission-system-postgres
+```
+
+3. **Generate sample data** (optional if you have your own data):
+```
+python generator/generate_sample_data.py
+```
+This will create a SQL file with sample data (02_sample_data.sql) that will be used to populate the database. Feel free to twitch some settings to either generate more data or change schema on personal need.
+
+4. **Build and start container**:
+Docker will set up multiple containers for the system – typically including the Flask web app, the PostgreSQL database, and a pgAdmin service for database administration. The first time you run this, it will download required base images and set up the environment.
+
+5. **Access the web application**:
+Once the containers are up and running, open your browser and navigate to `http://localhost:5000`. You should see the Ad Submission System’s web interface, which is the client login by default. From here, you can register a new client account or use existing sample credentials to log in as a client or staff (depending on the sample data you loaded).
+
+6. **Access pgAdmin (Database UI)**: pgAdmin (a web-based PostgreSQL admin tool) is optionally provided for convenience. If included in the Docker setup, you can access it at `http://localhost:5050`. Log in with the email and password configured in the Docker Compose file (default admin should be admin@admin.com / admin111). Once logged in, you can inspect the database schema, tables, and run queries (the sample analytical queries can be executed here to verify the results).
+
+After these steps, you will have the Flask app running (serving the client and staff dashboards) and the database initialized with the required schema. You can then interact with the system as a client or staff to test all features. Further demonstration would be shown on the next part.
+
+## Project Demo
+Below are screenshots demonstrating key parts of the system’s user interface. These screenshots illustrate how clients and staff interact with the platform:
+
+## SQL Analysis Showcase
