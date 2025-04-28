@@ -227,22 +227,28 @@ Below are screenshots demonstrating key parts of the system’s user interface. 
 In addition to the web application features, the project includes a series of SQL queries that showcase the analytical insights one can extract from the data. These queries were designed to demonstrate complex SQL operations such as joins, aggregations, filtering with conditions, and window functions (I set a random state in the generator code, so the result should be the same if you used it). Below is a list of example queries performed on the database, along with brief descriptions and a screenshot of the query results:
 
 - **Average Budgets by Department**: Calculates the average budget of client requests versus the average project budget for each department, and counts the total number of projects in that department. This helps compare the initial requested budget from clients to the actual budget of projects handled by each department.
+  
 ![average_budget](sql/average_budget.png)
 
 - **Client Request Status Counts**: Shows each client’s total number of requests broken down by status (Approved, Pending, Rejected). This query uses filtered aggregate counts to provide insight into how many requests from each client have been approved, rejected or are still pending. It’s useful for understanding client engagement and success rates of their submissions.
+  
 ![client_request](sql/client_request.png)
 
 -  **Staff Project Count Rank (by Department)**: Ranks staff members within each department by the number of projects they are assigned to. This query uses a window function (`RANK() OVER (PARTITION BY dept_no ORDER BY project_count DESC)`) to assign a rank to each staff member per department based on their project count. It highlights the distribution of workload among staff in the same department.
+  
 ![department_project_rank](sql/department_project_rank.png)
 
 - **Client Age Group Categorization**:
 The query calculates each client’s age (based on birth date) and then categorizes them into groups (Under 20, 20s, 30s, 40s, 50+). This demonstrates how to perform data transformation in SQL using CASE expressions.
+
 ![group_client_age](sql/group_client_age.png)
 
 - **Overall Staff Project Ranking**:
 Determines the ranking of staff by total number of projects across the entire organization. Unlike the department-specific ranking, this query ranks all staff globally by project count to find who has worked on the most projects overall.
+
 ![rank_project_number](sql/rank_project_number.png)
 
 - **Project Assignments (Join Example)**:
 An example of a multi-table join that lists all project assignments. It combines data from the assignment table, staff table, and project table to show which staff member (name and ID) is assigned to which project, along with the project’s status and description. This showcases a basic yet crucial use of SQL JOINs to pull together related information.
+
 ![project_assignment_list](sql/project_assignment_list.png)
