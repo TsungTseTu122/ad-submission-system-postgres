@@ -223,6 +223,23 @@ After these steps, you will have the Flask app running (serving the client and s
 ## Project Demo
 Below are screenshots demonstrating key parts of the system’s user interface. These screenshots illustrate how clients and staff interact with the platform:
 
+1. **Client_board**
+You will see the client login page as the default website when you access localhost:5000. After logging in, a client sees a dashboard listing all of their submitted advertising requests along with each request’s status. Clients can easily track the progress of each request (e.g., whether it is still pending approval or has been approved/rejected). There is also a “Submit a New Request” button that allows the client to navigate to the submission form for creating a new ad request, and a logout link at the top right corner.
+
+![client_dashboard](images/client_dashboard.png)
+
+2. **Ad request submission**
+
+![ad_request_submission](images/ad_request_submission.png)
+
+3. **Staff dashboard**
+
+![staff_dashboard](images/staff_dashboard.png)
+
+4. **Project assignment view**
+
+![project_assignment_review](images/project_assignment_review.png)
+
 ## SQL Analysis Showcase
 In addition to the web application features, the project includes a series of SQL queries that showcase the analytical insights one can extract from the data. These queries were designed to demonstrate complex SQL operations such as joins, aggregations, filtering with conditions, and window functions (I set a random state in the generator code, so the result should be the same if you used it). Below is a list of example queries performed on the database, along with brief descriptions and a screenshot of the query results:
 
